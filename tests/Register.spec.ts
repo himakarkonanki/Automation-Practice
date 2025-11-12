@@ -2,6 +2,7 @@ import { test, expect } from '../fixtures/myFixture';
 const loginDataset = JSON.parse(JSON.stringify(require("../utils/loginDetails.json")))
 const addToCartDataset = JSON.parse(JSON.stringify(require("../utils/addToCartDetails.json")))
 const registerData = JSON.parse(JSON.stringify(require("../utils/registerData.json")));
+const reviewData=JSON.parse(JSON.stringify(require("../utils/reviewDetails.json")))
 
 test.describe("Register User and Add Product to cart", () => {
 
@@ -23,12 +24,19 @@ test.describe("Register User and Add Product to cart", () => {
 
   })
 
-  test("Add to cart", async ({ page, addProductPage }) => {
+  test("Add to cart", async ({addProductPage }) => {
     // const addProduct= new AddProductToCart(page)
     await addProductPage.getListofProducts()
     await addProductPage.addProductToCart()
     await addProductPage.verifyCartDetails(addToCartDataset.productName, addToCartDataset.productPrice, addToCartDataset.productQuantity, addToCartDataset.totalAmount)
     // await page.pause()
+  })
+
+  test("Adding review", async({addReview})=>{
+    await addReview.clickOnProduct()
+    await addReview.clickOnViewProduct()
+    await addReview.addingReview(reviewData.reviewer,reviewData.email,reviewData.comment)
+
   })
 
 })

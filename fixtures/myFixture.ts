@@ -1,12 +1,14 @@
 import {test as base} from "@playwright/test"
 import { RegisterUser } from '../PageObjects/Register/RegisterUser';
 import { LoginPage } from '../PageObjects/Login/LoginPage';
-import { AddProductToCart } from '../PageObjects/AddToCartPage/AddProductToCart';
+import { AddProductToCart } from '../PageObjects/AddToCart/AddProductToCart';
+import { AddReviewPage } from "../PageObjects/AddReview/AddReviewPage";
 
 type basePages={
     registerPage:RegisterUser
     loginPage:LoginPage
     addProductPage:AddProductToCart
+    addReview:AddReviewPage
 }
 
 const testFixture=base.extend<basePages>({
@@ -26,6 +28,10 @@ const testFixture=base.extend<basePages>({
 
     addProductPage:async({page},use)=>{
         await use(new AddProductToCart(page))
+    },
+
+    addReview:async({page},use)=>{
+        await use(new AddReviewPage(page))
     }
 })
 
