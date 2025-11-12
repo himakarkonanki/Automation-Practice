@@ -1,7 +1,7 @@
 import {test as base} from "@playwright/test"
-import { RegisterUser } from '../PageObjects/RegisterUser';
-import { LoginPage } from '../PageObjects/LoginPage';
-import { AddProductToCart } from '../PageObjects/AddProductToCart';
+import { RegisterUser } from '../PageObjects/Register/RegisterUser';
+import { LoginPage } from '../PageObjects/Login/LoginPage';
+import { AddProductToCart } from '../PageObjects/AddToCartPage/AddProductToCart';
 
 type basePages={
     registerPage:RegisterUser
