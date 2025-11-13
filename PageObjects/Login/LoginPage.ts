@@ -1,31 +1,25 @@
 import { Page } from "@playwright/test";
+import { LoginPageLocators } from "./LoginPageLocators";
 
 
 export class LoginPage{
 
     readonly page;
-    readonly signInLocator
-    readonly emailAddress;
-    readonly password;
-    readonly loginButton;
-   
+    readonly loginPage:LoginPageLocators
 
     constructor(page:Page){
         this.page=page
-        this.signInLocator=page.locator('a').filter({hasText:" Signup / Login"})
-        this.emailAddress=page.getByPlaceholder("Email Address").first()
-        this.password=page.getByPlaceholder("Password")
-        this.loginButton=page.getByRole('button', {name:'Login'})
+        this.loginPage = new LoginPageLocators(page)
     }
 
     async Login(){
-        await this.signInLocator.click()
+        await this.loginPage.signInLocator.click()
         
     }
     async userLogin(email:string, pass:string){
-        await this.emailAddress.fill(email)
-        await this.password.fill(pass)
-        await this.loginButton.click()
+        await this.loginPage.emailAddress.fill(email)
+        await this.loginPage.password.fill(pass)
+        await this.loginPage.loginButton.click()
     }
 
     

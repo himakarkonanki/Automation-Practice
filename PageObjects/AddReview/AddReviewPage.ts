@@ -1,35 +1,29 @@
 import { Page } from "@playwright/test"
+import { AddReviewPageLocators } from "./AddReviewPageLocators"
 
 export class AddReviewPage{
 
     readonly page
-    readonly product;
-    readonly viewProduct;
-    readonly reviewerName;
-    readonly reviewerEmail;
-    readonly reviewText;
+    readonly reviewPageLocator:AddReviewPageLocators
+ 
 
     constructor(page:Page){
-
         this.page=page
-        this.product=page.locator('a').filter({hasText:"Products"})
-        this.viewProduct=page.locator(".col-sm-4").filter({hasText:"Green Side Placket Detail T-Shirt"}).getByText("View Product")
-        this.reviewerName=page.getByPlaceholder("Your Name")
-        this.reviewerEmail=page.locator("#email")
-        this.reviewText=page.getByPlaceholder("Add Review Here!")
+        this.reviewPageLocator = new AddReviewPageLocators(page)
+       
     }
 
     async clickOnProduct(){
-        await this.product.click()
+        await this.reviewPageLocator.product.click()
     }
 
     async clickOnViewProduct(){
-        await this.viewProduct.click()
+        await this.reviewPageLocator.viewProduct.click()
     }
 
     async addingReview(name:string, email:string, reviewText:string){
-        await this.reviewerName.fill(name)
-        await this.reviewerEmail.fill(email)
-        await this.reviewText.fill(reviewText)
+        await this.reviewPageLocator.reviewerName.fill(name)
+        await this.reviewPageLocator.reviewerEmail.fill(email)
+        await this.reviewPageLocator.reviewText.fill(reviewText)
     }
 }
