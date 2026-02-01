@@ -1,4 +1,4 @@
-import { test, expect } from '../fixtures/myFixture';
+import { test, expect } from '../../fixtures/myFixture';
 const loginDataset = JSON.parse(JSON.stringify(require("../utils/loginDetails.json")))
 const addToCartDataset = JSON.parse(JSON.stringify(require("../utils/addToCartDetails.json")))
 const registerData = JSON.parse(JSON.stringify(require("../utils/registerData.json")));
